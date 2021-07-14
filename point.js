@@ -1,10 +1,12 @@
 class Point {
 
-    constructor(listOfPrevPoints, width, height, listOfRanges) {
+    constructor(listOfPrevPoints, width, height, listOfRanges, x, y) {
         this.listOfPrevPoints = listOfPrevPoints;
         this.height = height;
         this.width = width;
         this.listOfRanges = listOfRanges;
+        this.x = x;
+        this.y = y;
 
     }
     canvas = document.querySelector('canvas')
@@ -21,10 +23,14 @@ class Point {
             x = Math.floor(Math.random() * this.width);
             y = Math.floor(Math.random() * this.height);
         } while (y * this.width + x in this.listOfPrevPoints);
-        this.listOfPrevPoints.push(y * this.width + x);
         this.x = x;
         this.y = y;
+        this.setPoint();
+    }
+
+    setPoint () {
         this.fieldColor = [this.chooseColor(), this.chooseColor(), this.chooseColor()];
+        this.listOfPrevPoints.push(this.y * this.width + this.x);
     }
 
     get listOfPreviousPoints () {

@@ -37,12 +37,20 @@ class Main {
     }
 
     appendPoint() {
-        let _point = new Point(this.listOfPrevPoints, this.width, this.height, this.listOfRanges);
+        let _point = new Point(this.listOfPrevPoints, this.width, this.height, this.listOfRanges, 0, 0);
         _point.setXY();
         _point.drawPoint();
         _point.resetColors();
         this.listOfPrevPoints = _point.listOfPreviousPoints;
     }
 
-
+    appendPointOnClick() {
+        this.canvas.onclick = (event) => {
+            let _point = new Point(this.listOfPrevPoints, this.width, this.height, this.listOfRanges, event.pageX, event.pageY);
+            _point.setPoint();
+            _point.drawPoint();
+            _point.resetColors();
+            this.listOfPrevPoints = _point.listOfPreviousPoints;
+        }
+    }
 }
