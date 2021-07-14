@@ -3,16 +3,21 @@ class Main {
     constructor() {
     }
 
-    width = 1000;
-    height = 1000;
+    set width(value){
+        this._width = value;
+    }
+
+    set height(value){
+        this._height = value;
+    }
 
     listOfPrevPoints = [];
     listOfRanges = [];
 
     SetRanges(){
-        for (let j = 0; j < this.height; j++){
+        for (let j = 0; j < this._height; j++){
             let layer = [];
-            for (let i = 0; i < this.width; i++){
+            for (let i = 0; i < this._width; i++){
                 layer.push(10000000);
             }
             this.listOfRanges.push(layer);
@@ -21,8 +26,8 @@ class Main {
 
     createCanvas() {
         let canvas = document.createElement('canvas');
-        canvas.width = this.width;
-        canvas.height = this.height;
+        canvas.width = this._width;
+        canvas.height = this._height;
         //canvas.style.background = 'lightgray';
         document.body.prepend(canvas);
         this.canvas = canvas;
@@ -33,11 +38,11 @@ class Main {
 
     prepareCanvas(){
         this.context.fillStyle = 'rgb(255, 254, 255)';
-        this.context.fillRect(0, 0, this.width, this.height);
+        this.context.fillRect(0, 0, this._width, this._height);
     }
 
     appendPoint() {
-        let _point = new Point(this.listOfPrevPoints, this.width, this.height, this.listOfRanges, 0, 0);
+        let _point = new Point(this.listOfPrevPoints, this._width, this._height, this.listOfRanges, 0, 0);
         _point.setXY();
         _point.drawPoint();
         _point.resetColors();
@@ -46,7 +51,7 @@ class Main {
 
     appendPointOnClick() {
         this.canvas.onclick = (event) => {
-            let _point = new Point(this.listOfPrevPoints, this.width, this.height, this.listOfRanges, event.pageX, event.pageY);
+            let _point = new Point(this.listOfPrevPoints, this._width, this._height, this.listOfRanges, event.pageX, event.pageY);
             _point.setPoint();
             _point.drawPoint();
             _point.resetColors();
