@@ -1,8 +1,8 @@
-let main = new Main;
-
-main.width = innerWidth;
-main.height = innerHeight;
-main.createCanvas();
-main.prepareCanvas();
-main.appendPoint();
-main.appendPointOnClick();
+let scene = new Scene(1000, 1000);
+scene.createCanvas();
+scene.generatePipe();
+scene.generatePipe();
+scene.generatePipe();
+scene.generatePipe();
+scene.generatePipe();
+setInterval(scene.updateScene, 20);
